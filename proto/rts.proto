@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+message Test
+{
+  uint64 test1 = 5;
+}
+
