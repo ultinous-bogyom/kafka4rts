@@ -4,6 +4,7 @@ package bence.kafka4rts;
 
 
 message Map {
+  // represents a 1 meter by 1 meter area
   message Cell {
     enum TerrainType {
       GRASS = 0;
@@ -13,7 +14,7 @@ message Map {
     }
 
     required TerrainType terrain_type = 1;
-    required uint32 resource = 2; // amount of resoruce (0-100)
+    required uint32 resource = 2; // amount of resource (0-100)
   }
 
   required uint64 width = 1;
@@ -21,8 +22,23 @@ message Map {
   repeated Cell cells = 3; // cells in row-major order
 }
 
+message Point2D
+{
+  required float x = 1;
+  required float y = 2;
+}
+
+message Unit
+{
+  required Point2D position = 1;
+  required string team = 2;
+  optional Point2D target_position = 3;
+
+}
+
 message GameState {
   required Map terrain = 1;
+  repeated Unit units = 2;
 }
 
 
