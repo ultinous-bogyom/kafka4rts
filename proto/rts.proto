@@ -1,7 +1,29 @@
 syntax = "proto2";
 
-message Test
-{
-  uint64 test1 = 5;
+package bence.kafka4rts;
+
+
+message Map {
+  message Cell {
+    enum TerrainType {
+      GRASS = 0;
+      WATER = 1;
+      SAND = 2;
+      HILL = 3;
+    }
+
+    required TerrainType terrain_type = 1;
+    required uint32 resource = 2; // amount of resoruce (0-100)
+  }
+
+  required uint64 width = 1;
+  required uint64 height = 2;
+  repeated Cell cells = 3; // cells in row-major order
 }
+
+message GameState {
+  required Map terrain = 1;
+}
+
+
 
